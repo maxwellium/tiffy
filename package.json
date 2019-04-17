@@ -1,0 +1,27 @@
+{
+  "name": "tiffy",
+  "version": "0.0.0",
+  "description": "two factor authentication - generation, validation and publish to common apps. zero dependencies",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "files": [
+    "build"
+  ],
+  "license": "MIT",
+  "author": "maxwellium",
+  "repository": "github:maxwellium/tiffy",
+  "keywords": [
+    "2fa",
+    "two factor authentication",
+    "google authenticator"
+  ],
+  "scripts": {
+    "test": "node ./build/test",
+    "compile": "tsc -p ."
+  },
+  "devDependencies": {
+    "@types/node": "^11.13.4",
+    "gts": "^0.9.0",
+    "typescript": "^3.4.3"
+  }
+}
