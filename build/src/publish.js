@@ -16,12 +16,12 @@ function decodeReadableSecret(readableSecret) {
     return base32_1.decode(readableSecret.replace(/\W+/g, '').toUpperCase());
 }
 exports.decodeReadableSecret = decodeReadableSecret;
-function generateTOTPuri(secret, accountName, issuer, algorithm = constants_1.OPTIONS.algorithm, digits = constants_1.OPTIONS.digits, period = constants_1.OPTIONS.period) {
+function generateTOTPuri(readableSecret, accountName, issuer, algorithm = constants_1.OPTIONS.algorithm, digits = constants_1.OPTIONS.digits, period = constants_1.OPTIONS.period) {
     issuer = issuer.replace(/:/g, '');
     accountName = accountName.replace(/:/g, '');
-    secret = secret.replace(/\W+/g, '').toUpperCase();
+    readableSecret = readableSecret.replace(/\W+/g, '').toUpperCase();
     /** https://github.com/google/google-authenticator/wiki/Key-Uri-Format */
-    return `otpauth://totp/${encodeURI(issuer)}:${encodeURI(accountName)}?${querystring_1.stringify({ secret, issuer, algorithm, digits, period })}`;
+    return `otpauth://totp/${encodeURI(issuer)}:${encodeURI(accountName)}?${querystring_1.stringify({ secret: readableSecret, issuer, algorithm, digits, period })}`;
 }
 exports.generateTOTPuri = generateTOTPuri;
 //# sourceMappingURL=publish.js.map

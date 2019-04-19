@@ -19,7 +19,7 @@ export function decodeReadableSecret( readableSecret: string ) {
 
 
 export function generateTOTPuri(
-  secret: string,
+  readableSecret: string,
   accountName: string,
   issuer: string,
   algorithm = OPTIONS.algorithm,
@@ -29,13 +29,13 @@ export function generateTOTPuri(
 
   issuer = issuer.replace( /:/g, '' );
   accountName = accountName.replace( /:/g, '' );
-  secret = secret.replace( /\W+/g, '' ).toUpperCase();
+  readableSecret = readableSecret.replace( /\W+/g, '' ).toUpperCase();
 
   /** https://github.com/google/google-authenticator/wiki/Key-Uri-Format */
   return `otpauth://totp/${
     encodeURI( issuer )
     }:${
     encodeURI( accountName )
-    }?${ stringify( { secret, issuer, algorithm, digits, period } )
+    }?${ stringify( { secret: readableSecret, issuer, algorithm, digits, period } )
     }`;
 }
