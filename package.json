@@ -1,6 +1,6 @@
 {
   "name": "tiffy",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "two factor authentication - generation, validation and publish to common apps. zero dependencies",
   "main": "build/src/index.js",
   "types": "build/src/index.d.ts",
