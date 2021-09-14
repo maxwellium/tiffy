@@ -2,9 +2,12 @@ import { stringify } from 'querystring';
 import { encode, decode } from './lib/base32';
 import { OPTIONS } from './lib/constants';
 
-
+/**
+ * encode secret in human readable form
+ * @param {Buffer} secret
+ * @returns {string} 32 ascii chars with a space every 4 chars
+ */
 export function encodeReadableSecret( secret: Buffer ) {
-  /** 32 ascii characters without trailing '='s lowercase with a space every 4 characters */
   return encode( secret )
     .replace( /=/g, '' )
     .toLowerCase()

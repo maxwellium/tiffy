@@ -56,5 +56,3 @@ export function totpVerify(
     secret, token, time, period, epoch, counter, window, digits, algorithm
   ) !== false;
 }
-
-

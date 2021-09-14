@@ -1,5 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 /** https://tools.ietf.org/html/rfc4648 */
 const encoding = {
     chars: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567',
@@ -11,7 +9,7 @@ const encoding = {
         S: 18, T: 19, U: 20, V: 21, W: 22, X: 23, Y: 24, Z: 25
     }
 };
-function decode(string) {
+export function decode(string) {
     let end = string.length;
     while (string[end - 1] === '=') {
         --end;
@@ -40,8 +38,7 @@ function decode(string) {
     }
     return out;
 }
-exports.decode = decode;
-function encode(data) {
+export function encode(data) {
     const mask = (1 << encoding.bits) - 1;
     let out = '';
     let bits = 0;
@@ -62,5 +59,4 @@ function encode(data) {
     }
     return out;
 }
-exports.encode = encode;
 //# sourceMappingURL=base32.js.map

@@ -1,8 +1,6 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const constants_1 = require("./lib/constants");
-const util_1 = require("./lib/util");
-function hotpVerifyDelta(secret, token, counter = 0, window = constants_1.OPTIONS.window, digits = constants_1.OPTIONS.digits, algorithm = constants_1.OPTIONS.algorithm) {
+import { OPTIONS } from './lib/constants';
+import { digest } from './lib/util';
+export function hotpVerifyDelta(secret, token, counter = 0, window = OPTIONS.window, digits = OPTIONS.digits, algorithm = OPTIONS.algorithm) {
     if (token.length !== digits) {
         return false;
     }
@@ -18,9 +16,8 @@ function hotpVerifyDelta(secret, token, counter = 0, window = constants_1.OPTION
     }
     return false;
 }
-exports.hotpVerifyDelta = hotpVerifyDelta;
-function hotpGenerate(secret, counter, digits = constants_1.OPTIONS.digits, algorithm = constants_1.OPTIONS.algorithm) {
-    const _digest = util_1.digest(secret, counter, algorithm);
+export function hotpGenerate(secret, counter, digits = OPTIONS.digits, algorithm = OPTIONS.algorithm) {
+    const _digest = digest(secret, counter, algorithm);
     const offset = _digest[_digest.length - 1] & 0xf;
     /** calculate binary code (RFC4226 5.4) */
     const code = (_digest[offset] & 0x7f) << 24 |
@@ -32,5 +29,4 @@ function hotpGenerate(secret, counter, digits = constants_1.OPTIONS.digits, algo
         .padStart(digits)
         .substr(-digits);
 }
-exports.hotpGenerate = hotpGenerate;
 //# sourceMappingURL=hotp.js.map

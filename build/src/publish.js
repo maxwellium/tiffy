@@ -1,27 +1,26 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const querystring_1 = require("querystring");
-const base32_1 = require("./lib/base32");
-const constants_1 = require("./lib/constants");
-function encodeReadableSecret(secret) {
-    /** 32 ascii characters without trailing '='s lowercase with a space every 4 characters */
-    return base32_1.encode(secret)
+import { stringify } from 'querystring';
+import { encode, decode } from './lib/base32';
+import { OPTIONS } from './lib/constants';
+/**
+ * encode secret in human readable form
+ * @param {Buffer} secret
+ * @returns {string} 32 ascii chars with a space every 4 chars
+ */
+export function encodeReadableSecret(secret) {
+    return encode(secret)
         .replace(/=/g, '')
         .toLowerCase()
         .replace(/(\w{4})/g, "$1 ")
         .trim();
 }
-exports.encodeReadableSecret = encodeReadableSecret;
-function decodeReadableSecret(readableSecret) {
-    return base32_1.decode(readableSecret.replace(/\W+/g, '').toUpperCase());
+export function decodeReadableSecret(readableSecret) {
+    return decode(readableSecret.replace(/\W+/g, '').toUpperCase());
 }
-exports.decodeReadableSecret = decodeReadableSecret;
-function generateTOTPuri(readableSecret, accountName, issuer, algorithm = constants_1.OPTIONS.algorithm, digits = constants_1.OPTIONS.digits, period = constants_1.OPTIONS.period) {
+export function generateTOTPuri(readableSecret, accountName, issuer, algorithm = OPTIONS.algorithm, digits = OPTIONS.digits, period = OPTIONS.period) {
     issuer = issuer.replace(/:/g, '');
     accountName = accountName.replace(/:/g, '');
     readableSecret = readableSecret.replace(/\W+/g, '').toUpperCase();
     /** https://github.com/google/google-authenticator/wiki/Key-Uri-Format */
-    return `otpauth://totp/${encodeURI(issuer)}:${encodeURI(accountName)}?${querystring_1.stringify({ secret: readableSecret, issuer, algorithm, digits, period })}`;
+    return `otpauth://totp/${encodeURI(issuer)}:${encodeURI(accountName)}?${stringify({ secret: readableSecret, issuer, algorithm, digits, period })}`;
 }
-exports.generateTOTPuri = generateTOTPuri;
 //# sourceMappingURL=publish.js.map

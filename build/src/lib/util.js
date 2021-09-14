@@ -1,21 +1,16 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const constants_1 = require("./constants");
-const crypto_1 = require("crypto");
-function generateSecret(algorithm = constants_1.OPTIONS.algorithm, length = constants_1.SECRET_LENGTHS[algorithm]) {
-    return crypto_1.randomBytes(length);
+import { OPTIONS, SECRET_LENGTHS } from './constants';
+import { createHmac, randomBytes } from 'crypto';
+export function generateSecret(algorithm = OPTIONS.algorithm, length = SECRET_LENGTHS[algorithm]) {
+    return randomBytes(length);
 }
-exports.generateSecret = generateSecret;
-function digest(secret, counter, algorithm = constants_1.OPTIONS.algorithm) {
-    return crypto_1.createHmac(algorithm, adjustSecretLength(secret, constants_1.SECRET_LENGTHS[algorithm]))
+export function digest(secret, counter, algorithm = OPTIONS.algorithm) {
+    return createHmac(algorithm, adjustSecretLength(secret, SECRET_LENGTHS[algorithm]))
         .update(counterToBuffer(counter))
         .digest();
 }
-exports.digest = digest;
-function counterFromTime(time = Date.now(), period = constants_1.OPTIONS.period, epoch = constants_1.OPTIONS.epoch) {
+export function counterFromTime(time = Date.now(), period = OPTIONS.period, epoch = OPTIONS.epoch) {
     return Math.floor((time - epoch) / period / 1000);
 }
-exports.counterFromTime = counterFromTime;
 function adjustSecretLength(secret, length) {
     if (secret.length !== length) {
         secret = Buffer.from(Array(Math.ceil(length / secret.length) + 1).join(secret.toString('hex')), 'hex').slice(0, length);

@@ -1,8 +1,6 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const totp = require("./totp");
-const base32 = require("./base32");
-const publish = require("./publish");
+import * as totp from './totp';
+import * as base32 from './base32';
+import * as publish from './publish';
 const RESET = '\x1b[0m', _red = (text) => ['\x1b[31m', text, RESET].join(''), _green = (text) => ['\x1b[32m', text, RESET].join(''), _bright = (text) => ['\x1b[1m', text, RESET].join('');
 function main() {
     console.log(_bright('running totp tests'));

@@ -1,24 +1,19 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const constants_1 = require("./lib/constants");
-const util_1 = require("./lib/util");
-const hotp_1 = require("./hotp");
-function totpGenerate(secret, time = Date.now(), period = constants_1.OPTIONS.period, epoch = constants_1.OPTIONS.epoch, digits = constants_1.OPTIONS.digits, algorithm = constants_1.OPTIONS.algorithm, counter = util_1.counterFromTime(time, period, epoch)) {
-    return hotp_1.hotpGenerate(secret, counter, digits, algorithm);
+import { OPTIONS, } from './lib/constants';
+import { counterFromTime } from './lib/util';
+import { hotpGenerate, hotpVerifyDelta } from './hotp';
+export function totpGenerate(secret, time = Date.now(), period = OPTIONS.period, epoch = OPTIONS.epoch, digits = OPTIONS.digits, algorithm = OPTIONS.algorithm, counter = counterFromTime(time, period, epoch)) {
+    return hotpGenerate(secret, counter, digits, algorithm);
 }
-exports.totpGenerate = totpGenerate;
-function totpVerifyDelta(secret, token, time = Date.now(), period = constants_1.OPTIONS.period, epoch = constants_1.OPTIONS.epoch, counter = util_1.counterFromTime(time, period, epoch), window = constants_1.OPTIONS.window, digits = constants_1.OPTIONS.digits, algorithm = constants_1.OPTIONS.algorithm) {
+export function totpVerifyDelta(secret, token, time = Date.now(), period = OPTIONS.period, epoch = OPTIONS.epoch, counter = counterFromTime(time, period, epoch), window = OPTIONS.window, digits = OPTIONS.digits, algorithm = OPTIONS.algorithm) {
     counter -= window;
     window += window;
-    let delta = hotp_1.hotpVerifyDelta(secret, token, counter, window, digits, algorithm);
+    let delta = hotpVerifyDelta(secret, token, counter, window, digits, algorithm);
     if (delta !== false) {
         delta -= window;
     }
     return delta;
 }
-exports.totpVerifyDelta = totpVerifyDelta;
-function totpVerify(secret, token, time = Date.now(), period = constants_1.OPTIONS.period, epoch = constants_1.OPTIONS.epoch, counter = util_1.counterFromTime(time, period, epoch), window = constants_1.OPTIONS.window, digits = constants_1.OPTIONS.digits, algorithm = constants_1.OPTIONS.algorithm) {
+export function totpVerify(secret, token, time = Date.now(), period = OPTIONS.period, epoch = OPTIONS.epoch, counter = counterFromTime(time, period, epoch), window = OPTIONS.window, digits = OPTIONS.digits, algorithm = OPTIONS.algorithm) {
     return totpVerifyDelta(secret, token, time, period, epoch, counter, window, digits, algorithm) !== false;
 }
-exports.totpVerify = totpVerify;
 //# sourceMappingURL=totp.js.map

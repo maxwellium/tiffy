@@ -2,12 +2,12 @@ Small zero-dependencies vanilla module to generate and verify and two factor aut
 
 usage sample for quick roundtrip ( we generate a random secret, use chart.googleapis to display it as a qr code and then spew out current time based code every 10 seconds ):
 ```javascript
-const {
+import {
   generateSecret,
   encodeReadableSecret,
   generateTOTPuri,
   totpGenerate
-} = require( 'tiffy' );
+} from 'tiffy';
 
 
 const secret = generateSecret();
