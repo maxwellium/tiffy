@@ -1,6 +1,6 @@
 {
   "name": "tiffy",
-  "version": "0.4.0",
+  "version": "1.0.0",
   "description": "two factor authentication - generation, validation and publish to common apps. zero dependencies",
   "files": [
     "./dist"
