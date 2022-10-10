@@ -1,4 +1,4 @@
-/// <reference types="node" />
+/// <reference types="node" resolution-mode="require"/>
 /**
  * encode secret in human readable form
  * @param {Buffer} secret

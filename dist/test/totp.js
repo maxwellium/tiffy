@@ -1,6 +1,6 @@
 import { strictEqual } from 'assert';
-import { generateSecret } from '../src/lib/util';
-import { totpGenerate, totpVerify } from '../src/totp';
+import { generateSecret } from '../src/lib/util.js';
+import { totpGenerate, totpVerify } from '../src/totp.js';
 export function generateValidToken() {
     const secret = generateSecret();
     const token = totpGenerate(secret);

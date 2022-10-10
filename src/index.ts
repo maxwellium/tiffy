@@ -1,7 +1,5 @@
-export  { generateSecret } from './lib/util';
+export  { generateSecret } from './lib/util.js';
 
-export * from './totp';
-
-export * from './hotp';
-
-export * from './publish';
+export * from './totp.js';
+export * from './hotp.js';
+export * from './publish.js';

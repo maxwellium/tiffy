@@ -1,6 +1,6 @@
 import { stringify } from 'querystring';
-import { encode, decode } from './lib/base32';
-import { OPTIONS } from './lib/constants';
+import { encode, decode } from './lib/base32.js';
+import { OPTIONS } from './lib/constants.js';
 /**
  * encode secret in human readable form
  * @param {Buffer} secret

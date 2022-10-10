@@ -1,6 +1,6 @@
-import * as totp from './totp';
-import * as base32 from './base32';
-import * as publish from './publish';
+import * as totp from './totp.js';
+import * as base32 from './base32.js';
+import * as publish from './publish.js';
 
 
 const RESET = '\x1b[0m',

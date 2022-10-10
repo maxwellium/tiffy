@@ -1,6 +1,6 @@
 import { deepStrictEqual } from 'assert';
-import { generateSecret } from '../src/lib/util';
-import { encodeReadableSecret, decodeReadableSecret } from '../src/publish';
+import { generateSecret } from '../src/lib/util.js';
+import { encodeReadableSecret, decodeReadableSecret } from '../src/publish.js';
 export function encodeDecodeReadable() {
     const original = generateSecret();
     const encoded = encodeReadableSecret(original);

@@ -1,6 +1,5 @@
-import { OPTIONS } from './lib/constants';
-import { digest } from './lib/util';
-
+import { OPTIONS } from './lib/constants.js';
+import { digest } from './lib/util.js';
 
 
 export function hotpVerifyDelta(

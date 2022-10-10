@@ -1,6 +1,6 @@
-import { OPTIONS, } from './lib/constants';
-import { counterFromTime } from './lib/util';
-import { hotpGenerate, hotpVerifyDelta } from './hotp';
+import { OPTIONS, } from './lib/constants.js';
+import { counterFromTime } from './lib/util.js';
+import { hotpGenerate, hotpVerifyDelta } from './hotp.js';
 
 
 export function totpGenerate(

@@ -1,5 +1,5 @@
 import { strictEqual, deepStrictEqual } from 'assert';
-import { encode, decode } from '../src/lib/base32';
+import { encode, decode } from '../src/lib/base32.js';
 
 
 export function roundtrip() {

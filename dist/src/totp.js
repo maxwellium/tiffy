@@ -1,6 +1,6 @@
-import { OPTIONS, } from './lib/constants';
-import { counterFromTime } from './lib/util';
-import { hotpGenerate, hotpVerifyDelta } from './hotp';
+import { OPTIONS, } from './lib/constants.js';
+import { counterFromTime } from './lib/util.js';
+import { hotpGenerate, hotpVerifyDelta } from './hotp.js';
 export function totpGenerate(secret, time = Date.now(), period = OPTIONS.period, epoch = OPTIONS.epoch, digits = OPTIONS.digits, algorithm = OPTIONS.algorithm, counter = counterFromTime(time, period, epoch)) {
     return hotpGenerate(secret, counter, digits, algorithm);
 }

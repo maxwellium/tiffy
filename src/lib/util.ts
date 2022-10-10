@@ -1,4 +1,4 @@
-import { OPTIONS, SECRET_LENGTHS } from './constants';
+import { OPTIONS, SECRET_LENGTHS } from './constants.js';
 import { createHmac, randomBytes } from 'crypto';
 
 

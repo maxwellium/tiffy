@@ -1,6 +1,6 @@
-import * as totp from './totp';
-import * as base32 from './base32';
-import * as publish from './publish';
+import * as totp from './totp.js';
+import * as base32 from './base32.js';
+import * as publish from './publish.js';
 const RESET = '\x1b[0m', _red = (text) => ['\x1b[31m', text, RESET].join(''), _green = (text) => ['\x1b[32m', text, RESET].join(''), _bright = (text) => ['\x1b[1m', text, RESET].join('');
 function main() {
     console.log(_bright('running totp tests'));
