@@ -13,7 +13,7 @@ export function counterFromTime(time = Date.now(), period = OPTIONS.period, epoc
 }
 function adjustSecretLength(secret, length) {
     if (secret.length !== length) {
-        secret = Buffer.from(Array(Math.ceil(length / secret.length) + 1).join(secret.toString('hex')), 'hex').slice(0, length);
+        secret = Buffer.from(Array(Math.ceil(length / secret.length) + 1).join(secret.toString('hex')), 'hex').subarray(0, length);
     }
     return secret;
 }
