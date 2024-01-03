@@ -44,7 +44,7 @@ function adjustSecretLength( secret: Buffer, length: number ) {
         Math.ceil( length / secret.length ) + 1
       ).join( secret.toString( 'hex' ) ),
       'hex'
-    ).slice( 0, length );
+    ).subarray( 0, length );
 
   }
 

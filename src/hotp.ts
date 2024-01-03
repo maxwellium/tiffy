@@ -51,8 +51,9 @@ export function hotpGenerate(
     ( _digest[ offset + 2 ] & 0xff ) << 8 |
     ( _digest[ offset + 3 ] & 0xff );
 
-  return code
+    const codeString =  code
     .toString( 10 )
-    .padStart( digits )
-    .substr( -digits );
+    .padStart( digits );
+
+  return codeString.substring( codeString.length - digits );
 }
